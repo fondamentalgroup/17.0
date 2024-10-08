@@ -1,0 +1,17 @@
+<odoo>
+        <record id="res_partner_easy_agrifinest_view" model="ir.ui.view">
+            <field name="name">res.partner.easy.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='category_id']" position="after">
+                       <field name="fg_note_informative"/>
+                    </xpath>
+                    <xpath expr="//field[@name='property_product_pricelist']" position="before">
+                        <field name="fg_mode_paiement" domain="[(&quot;type&quot;, &quot;in&quot;, [&quot;bank&quot;, &quot;cash&quot;])]"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+</odoo>

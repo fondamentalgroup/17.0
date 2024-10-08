@@ -1,0 +1,53 @@
+<odoo>
+    <record id="view_confirm_wizard_form" model="ir.ui.view">
+        <field name="name">sale.order.check.colis.form</field>
+        <field name="model">sale.order.check.colis</field>
+        <field name="arch" type="xml">
+            <form string="Confirmation">
+                <group>
+                    <field name="message" readonly="1"/>
+                </group>
+                <footer>
+                    <button string="Confirmer" type="object" name="action_confirm" class="btn-primary"/>
+                    <button string="Annuler" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_order_check_colis" model="ir.actions.act_window">
+        <field name="name">Confirmation</field>
+        <field name="res_model">sale.order.check.colis</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <record id="sale_order_easy_agrifinest_view" model="ir.ui.view">
+        <field name="name">sale.order.easy.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="fg_note_informative"/>
+                </xpath>
+                  <xpath expr="//group[@name='order_details']" position="after">
+                    <group name="sale_shipping2" string="Livraison">
+                      <label for="commitment_date" string="Date de livraison"/>
+                      <div name="commitment_date_div2" class="o_row">
+                        <field name="commitment_date" readonly="state == 'cancel' or locked"/>
+                        <span name="expected_date_span" class="text-muted">Expected: <field name="expected_date" class="oe_inline" widget="date"/>
+                        </span>
+                      </div>
+                      <field name="fg_semaine" force_save="1" readonly="True"/>
+                      <field name="x_studio_char_field_3c3_1i857m7bs" string="to_compute" invisible="True"/>
+                    </group>
+                  </xpath>
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="fg_mode_paiement"  domain="[(&quot;type&quot;, &quot;in&quot;, [&quot;bank&quot;, &quot;cash&quot;])]"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+</odoo>
