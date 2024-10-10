@@ -2,7 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
     'name': "Easy Attribute Columns",
-    'version': '0.1.0',
+    'version': '0.1.0.1',
     'author': "Fondamental Group - Arnaud Gay",
     'description': """
     Add the fields
